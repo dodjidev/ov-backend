@@ -4,10 +4,10 @@ const configs = require('./configs');
 const mongoose = require('mongoose');
 const productRouter = require('./routes/product.rt')
 
-mongoose.connect(configs.MONGOOSE_URI)
+mongoose.connect("mongodb+srv://dadev:Mw4NsmQlClFsnALr@jrcluster.hllujh9.mongodb.net/Products?retryWrites=true&w=majority") //configs.MONGOOSE_URI
     .then(res => {
         console.log('successfuly connected to mongoose !!!')
-        app.listen(configs.SERVER_PORT , ()=> console.log('server started successfully !!'));
+        app.listen( process.env.PORT || 8500, ()=> console.log('server started successfully !!')); //configs.SERVER_PORT
     }).catch(err => console.log('mongoose connection error:'+err.message))
 
 app.use(express.urlencoded({extended: true}))
