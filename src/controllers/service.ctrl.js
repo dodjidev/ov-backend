@@ -1,4 +1,4 @@
-const Product = require('../models/product.mdl')
+const Service = require('../models/service.mdl')
 
 exports.list = (req, res) => {
     let query = req.query;
@@ -14,29 +14,29 @@ exports.list = (req, res) => {
     if(query.colors)
       query.colors = {"$regex": query.colors , "$options": "i"}
 
-    onRequest(res, Product.find(query))
+    onRequest(res, Service.find(query))
 }
 
 exports.store = (req , res) => {
     let data = req.body;
     delete data._id;
-    let product = new Product(data);
-    onRequest(res, product.save() , 201)
+    let service = new Service(data);
+    onRequest(res, service.save() , 201)
 }
 
 exports.update = (req, res) => {
      let _id = req.params.id;
-     onRequest(res, Product.updateOne({_id} , {...req.body}) , 201)
+     onRequest(res, Service.updateOne({_id} , {...req.body}) , 201)
 }
 
 exports.show = (req, res) => {
     let _id = req.params.id;
-    onRequest(res, Product.findById(_id))
+    onRequest(res, Service.findById(_id))
 }
 
 exports.delete = (req, res) => {
     let _id = req.params.id;
-    onRequest(res, Product.deleteOne({_id}))
+    onRequest(res, Service.deleteOne({_id}))
 }
 
 exports.filter = (req, res) => {
@@ -52,7 +52,7 @@ exports.filter = (req, res) => {
     if(filterCriterias.colors)
        filterCriterias.colors = {"$regex": filterCriterias.colors , "$options": "i"}
 
-    onRequest(res, Product.find(filterCriterias))
+    onRequest(res, Service.find(filterCriterias))
 }
 
 
