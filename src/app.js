@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-// const configs = require('./configs');
+const configs = require('./configs');
 // const mongoose = require('mongoose');
 // const serviceRoute = require('./routes/service.rt')
 // const serviceTypeRoute = require('./routes/serviceType.rt')
