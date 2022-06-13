@@ -15,7 +15,7 @@ const configs = require('./configs');
 // app.use(express.json({extended: true}))
 
 app.get('/', (req, res)=>{
-    res.status(200).json({message: "Well done !!!"});
+    res.status(200).json({message: "Well done !!!", port: configs.SERVER_PORT});
 })
 
 // app.use('/services', serviceRoute)
