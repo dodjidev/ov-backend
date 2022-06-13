@@ -18,7 +18,7 @@ app.get('/', (req, res)=>{
     res.status(200).json({message: "Well done !!!", port: configs.SERVER_PORT});
 })
 
-// app.use('/services', serviceRoute)
+app.use('/services', serviceRoute)
 // app.use('/service-types', serviceTypeRoute)
 
 
