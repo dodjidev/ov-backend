@@ -3,7 +3,7 @@ const app = express();
 const configs = require('./configs');
 const mongoose = require('mongoose');
 const serviceRoute = require('./routes/service.rt')
-// const serviceTypeRoute = require('./routes/serviceType.rt')
+const serviceTypeRoute = require('./routes/serviceType.rt')
 
 mongoose.connect(configs.MONGOOSE_URI) 
     .then(res => {
