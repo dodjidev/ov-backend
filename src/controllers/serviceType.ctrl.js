@@ -1,4 +1,4 @@
-const ServiceType = require('../models/ServiceTypes.mdl')
+const ServiceType = require('../models/serviceType.mdl')
 
 exports.list = (req, res) => {
     onRequest(res, ServiceType.find())
