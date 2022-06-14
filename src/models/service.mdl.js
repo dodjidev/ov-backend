@@ -7,6 +7,10 @@ const serviceSchema = new Schema({
         type: String,
         required: true
     },
+    reference: {
+        type: String,
+        require: [true , "Le reference est réquise"]
+    },
     description: {
         type: String,
         required: true

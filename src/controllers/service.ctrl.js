@@ -1,4 +1,5 @@
 const Service = require('../models/service.mdl')
+const { sendMensageToDevice } = require('../services/firebase/') ;
 
 exports.list = (req, res) => {
     let query = req.query;
@@ -11,17 +12,20 @@ exports.list = (req, res) => {
     }
       
     console.log(query)
-    if(query.colors)
-      query.colors = {"$regex": query.colors , "$options": "i"}
 
-    onRequest(res, Service.find(query))
+  
+    onRequest(res, Service.find(query), 200)
 }
 
 exports.store = (req , res) => {
     let data = req.body;
     delete data._id;
+    data.reference = "PRS-"+(new Date()).getTime();
     let service = new Service(data);
-    onRequest(res, service.save() , 201)
+    const callback = ()=>{
+        sendMensageToDevice("Nouvelle demande" , "Nouvelle demande de prestation réçu. reference "+data.reference)
+    }
+    onRequest(res, service.save() , 201 , callback)
 }
 
 exports.update = (req, res) => {
@@ -30,7 +34,7 @@ exports.update = (req, res) => {
 }
 
 exports.show = (req, res) => {
-    let _id = req.params.id;
+    let _id = req.params.id;//sendMensageToDevice
     onRequest(res, Service.findById(_id))
 }
 
@@ -56,9 +60,12 @@ exports.filter = (req, res) => {
 }
 
 
-const onRequest = (res ,  promise , status = 200) =>{
+const onRequest = (res ,  promise , status = 200 , onFinish) =>{
     promise
         .then(result => ({result , error: false , status}))
         .catch(err => ({result: false , error: err.message , status: 500}))
-        .then( result => res.status(result.status).json(result))
+        .then( result => {
+            if(typeof onFinish == "function") onFinish();
+            res.status(result.status).json(result)
+        })
 }
