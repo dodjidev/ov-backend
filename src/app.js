@@ -7,6 +7,8 @@ const serviceTypeRoute = require('./routes/serviceType.rt')
 
 app.use((req, res, next)=>{
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET POST PUT PATCH');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     next()
 })
 

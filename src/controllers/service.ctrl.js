@@ -62,10 +62,13 @@ exports.filter = (req, res) => {
 
 const onRequest = (res ,  promise , status = 200 , onFinish) =>{
     promise
-        .then(result => ({result , error: false , status}))
+        .then(result =>{
+            if(typeof onFinish == "function") onFinish();
+            return {result , error: false , status}
+        })
         .catch(err => ({result: false , error: err.message , status: 500}))
         .then( result => {
-            if(typeof onFinish == "function") onFinish();
+            
             res.status(result.status).json(result)
         })
 }
