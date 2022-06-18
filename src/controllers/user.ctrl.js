@@ -47,7 +47,7 @@ exports.filter = (req, res) => {
 exports.login = (req , res)=>{
     delete req.body._id;
     User.findOne({phone: req.body.phone , password: req.body.password}).then(result =>{
-        return {result , error: res != null ? false : "Telephone ou mot de passe incorrect !!!" , status: res != null ? 200 : 401}
+        return {result , error: result ? false : "Telephone ou mot de passe incorrect !!!" , status: result  ? 200 : 401}
     })
     .catch(err => ({result: false , error: err.message , status: 500}))
     .then( result => {
