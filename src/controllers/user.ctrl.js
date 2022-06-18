@@ -46,8 +46,6 @@ exports.filter = (req, res) => {
 
 exports.login = (req , res)=>{
     delete req.body._id;
-    res.json({"message": "cool !!!"})
-    return
     User.findOne({phone: req.body.phone , password: req.body.password}).then(result =>{
         return {result , error: false , status:200}
     })
