@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: "String",
+        unique: [true , "Un utilisateur avec le meme numero de téléphone existe deja"],
         required: true
     },
     password: {
