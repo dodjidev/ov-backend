@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema
-// {"address": "Test addr", 
-// "description": "Test", 
-// "executionEstimatedTime": "24", 
-// "phone": "63999", 
-// "typeID": "62a652ad0fd3ffb04d93578d", 
-// "userID": 45}
+
 const serviceSchema = new Schema({
-    typeID: {
-        type: String,
-        required: true
+    serviceType: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "ServiceType",
     },
     reference: {
         type: String,
@@ -20,9 +16,10 @@ const serviceSchema = new Schema({
         type: String,
         required: true
     },
-    userID: {
-      type: String,
-      required: true
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
     phone: {
         type: String,
