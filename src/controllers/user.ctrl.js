@@ -44,6 +44,18 @@ exports.filter = (req, res) => {
     onRequest(res, User.find(filterCriterias))
 }
 
+exports.login = (req , res)=>{
+    delete req.body._id;
+    User.findOne({phone: req.body.phone , password: req.body.password}).then(result =>{
+        return {result , error: false , status}
+    })
+    .catch(err => ({result: false , error: err.message , status: 500}))
+    .then( result => {
+        
+        res.status(result.status).json(result)
+    })
+}
+
 
 const onRequest = (res ,  promise , status = 200 , onFinish) =>{
     promise
