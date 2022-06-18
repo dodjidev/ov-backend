@@ -4,6 +4,7 @@ const configs = require('./configs');
 const mongoose = require('mongoose');
 const serviceRoute = require('./routes/service.rt')
 const serviceTypeRoute = require('./routes/serviceType.rt')
+const userRoute = require('./routes/user.rt')
 
 app.use((req, res, next)=>{
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,6 +22,7 @@ app.get('/', (req, res)=>{
     res.status(200).json({message: "Well done !!!", port: configs.SERVER_PORT});
 })
 
+app.use('/users', userRoute)
 app.use('/services', serviceRoute)
 app.use('/service-types', serviceTypeRoute)
 

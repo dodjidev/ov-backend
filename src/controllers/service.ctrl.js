@@ -14,7 +14,7 @@ exports.list = (req, res) => {
     console.log(query)
 
   
-    onRequest(res, Service.find(query), 200)
+    onRequest(res, Service.find(query).populate('user', 'name phone -_id').populate('serviceType', 'label -_id').exec(), 200)
 }
 
 exports.store = (req , res) => {
@@ -35,7 +35,7 @@ exports.update = (req, res) => {
 
 exports.show = (req, res) => {
     let _id = req.params.id;//sendMensageToDevice
-    onRequest(res, Service.findById(_id))
+    onRequest(res, Service.findById(_id).populate('user', 'name phone -_id').populate('serviceType', 'label -_id').exec())
 }
 
 exports.delete = (req, res) => {
