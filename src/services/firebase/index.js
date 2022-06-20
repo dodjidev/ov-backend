@@ -1,12 +1,12 @@
 const admin = require('firebase-admin');
 
-const serviceAccount = require('./firbase-serviceAccountKey.json');
+const serviceAccount = require('./ov-backend-firebase-adminsdk-32hbq-6a6d8ea995.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
 
-const  testDeviceToken = "eXip8LZ0QBWb8lFKOlmurd:APA91bEbobH9IGWZC1a57xuSL7iTUaElH4exw-u5kgMc-iHPLh7ZF575ok8ZMNVqk5C_L9tI3HASy_a1T7GOz2LwZgyggkTNs5o_MRBPW3S2D2YWvX1YM8AhX8ihsxPb7S2el1NVmOYA";
+const  testDeviceToken = "dOzAVkZTTNm_HtlGCRCAGY:APA91bHvzhdJTtRNpn3UF8f_dMw5U9-E7Z7E5tMj7tMqgaNVL5icM2AMB5g0HyWdZYmC3DKXONngFh3kVGMiudOQ-RL-eDyKI79a81lBa_5GwRvslWy0eSKY7rOparOjBBZ3kx097UTV";
 
 exports.sendMensageToDevice = (title , body)=>{
      const payload = {
